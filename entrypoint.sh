@@ -31,7 +31,8 @@ uwsgi \
     --virtualenv "${VEDIR}" \
     --enable-threads \
     --stats 127.0.0.1:9191 \
-    --http-socket=":9000" \
+    --socket=":9000" \
+    --http-socket=":8080" \
     --module "${FLASK_APP}"
 
 # --profiler
