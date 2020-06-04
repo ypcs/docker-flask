@@ -9,6 +9,7 @@ ENV FLASK_APP hello:app
 RUN /usr/lib/docker-helpers/apt-setup && \
     /usr/lib/docker-helpers/apt-upgrade && \
     apt-get --assume-yes install \
+        curl \
         python3-flask \
         python3-venv \
         uwsgi \
@@ -30,3 +31,5 @@ RUN python3 -m venv --system-site-packages "${VEDIR}" && \
     echo 'export PATH="${VEDIR}:${PATH}"' >> /home/user/.profile
 
 ENTRYPOINT ["/entrypoint.sh"]
+
+HEALTHCHECK --interval=10s --timeout=5s --start-period=5s --retries=3 CMD curl -f http://localhost:8080/ || exit 1
