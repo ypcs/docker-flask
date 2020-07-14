@@ -11,7 +11,10 @@ set -e
 
 UWSGI_PYTHON="python$(/usr/bin/python3 --version |awk '{print $2}' |cut -b1,3)"
 
-# FIXME: flask db init, upgrade, ...
+if [ -x "/app/flask-migrate" ]
+then
+    /app/flask-migrate
+fi
 
 cd "${APPDIR:-/app}"
 
