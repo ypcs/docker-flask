@@ -1,4 +1,4 @@
-FROM ypcs/python:latest
+FROM docker.io/ypcs/python:latest
 
 ARG APT_PROXY
 
