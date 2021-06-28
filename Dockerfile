@@ -1,4 +1,6 @@
-FROM docker.io/ypcs/python:latest
+# This can be *any* Ubuntu/Debian base image with sufficient Python3 version
+# available
+FROM docker.io/ypcs/debian:bullseye
 
 ARG APT_PROXY
 
@@ -10,8 +12,13 @@ RUN /usr/lib/docker-helpers/apt-setup && \
     /usr/lib/docker-helpers/apt-upgrade && \
     apt-get --assume-yes install \
         curl \
+        python3 \
+        python3-dev \
         python3-flask \
+        python3-pip \
+        python3-setuptools \
         python3-venv \
+        python3-wheel \
         uwsgi \
         uwsgi-plugin-python3 && \
     /usr/lib/docker-helpers/apt-cleanup
